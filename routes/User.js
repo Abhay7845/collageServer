@@ -67,7 +67,7 @@ router.post("/login", loginValidation, async (req, res) => {
         .status(400)
         .json({ success: false, error: "Sorry!  please register with us" });
     }
-    const comparePassword = bcrypt.compare(password, user.password);
+    const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword) {
       return res
         .status(400)
@@ -76,7 +76,7 @@ router.post("/login", loginValidation, async (req, res) => {
     const data = {
       user: user,
     };
-    const token = await jwt.sign(data, JWT_SECRET);
+    const token = jwt.sign(data, JWT_SECRET);
     res.json({ success: true, message: "login successfully", user, token });
   } catch (error) {
     console.log("error==>", error);
