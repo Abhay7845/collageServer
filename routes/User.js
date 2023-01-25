@@ -160,7 +160,6 @@ router.get("/fetchAddUser", fetchUser, async (req, res) => {
 });
 
 // SUBSCRIPTION API -5
-
 router.post("/subscription", SubscriptionValidation, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -171,17 +170,16 @@ router.post("/subscription", SubscriptionValidation, async (req, res) => {
     const subscriber = await subscription.create({ email, comment });
     res.status(200).send({
       success: true,
-      message: "user subscribered successfully",
+      message: "user Subscribed successfully",
       subscriber,
     });
   } catch (error) {
     console.log("error==>", error);
-    res.status(400).send({ success: false, message: "Not Subscried" });
+    res.status(400).send({ success: false, message: "Not Subscribed" });
   }
 });
 
 // FETCH SUBSCRIPTION COMMENT API -6
-
 router.get("/fetch/comment", async (req, res) => {
   try {
     let comments = await subscription.find({ user: req.body.id });
