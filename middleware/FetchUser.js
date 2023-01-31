@@ -11,7 +11,7 @@ const fetchUser = (req, res, next) => {
     req.body.user = data.user;
     next();
   } catch (error) {
-    console.log("error==>", error);
+    // console.log("error==>", error);
     res.status(401).send({ error: "user not found" });
   }
 };
