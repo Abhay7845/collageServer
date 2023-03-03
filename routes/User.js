@@ -203,9 +203,11 @@ router.delete("/delete/add/user/:id", async (req, res) => {
         .status(400)
         .send({ success: false, message: "data not found" });
     }
-    res
-      .status(200)
-      .send({ success: true, message: "data deleted", data: deleteId });
+    res.status(200).send({
+      success: true,
+      message: "data has been deleted successfully",
+      data: deleteId,
+    });
   } catch (error) {
     res.status(500).send({ success: false, message: error });
   }
