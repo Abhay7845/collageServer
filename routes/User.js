@@ -194,4 +194,21 @@ router.get("/fetch/comment", async (req, res) => {
   }
 });
 
+// DELETE ADD USERS API -7
+router.delete("/delete/add/user/:id", async (req, res) => {
+  try {
+    const deleteId = await AddUser.findByIdAndDelete(req.params.id);
+    if (!req.params.id) {
+      return res
+        .status(400)
+        .send({ success: false, message: "data not found" });
+    }
+    res
+      .status(200)
+      .send({ success: true, message: "data deleted", data: deleteId });
+  } catch (error) {
+    res.status(500).send({ success: false, message: error });
+  }
+});
+
 module.exports = router;
