@@ -213,4 +213,34 @@ router.delete("/delete/user/:id", async (req, res) => {
   }
 });
 
+// DELETE ADD USERS API -7
+router.put("/update/user/:id", async (req, res) => {
+  try {
+    const updateUser = await AddUser.findById(req.params.id);
+    if (!updateUser) {
+      return res
+        .status(400)
+        .send({ success: false, message: "user Not found" });
+    } else {
+      await AddUser.updateOne({
+        name: req.body.name,
+        occupation: req.body.occupation,
+        email: req.body.email,
+        phone: req.body.phone,
+        country: req.body.country,
+        state: req.body.state,
+        city: req.body.city,
+        postalCode: req.body.postalCode,
+        address: req.body.address,
+      });
+      res.status(200).send({
+        success: true,
+        message: "data has been updated successfully",
+      });
+    }
+  } catch (error) {
+    res.status(500).send({ success: false, message: error });
+  }
+});
+
 module.exports = router;
