@@ -195,7 +195,7 @@ router.get("/fetch/comment", async (req, res) => {
 });
 
 // DELETE ADD USERS API -7
-router.delete("/delete/add/user/:id", async (req, res) => {
+router.delete("/delete/user/:id", async (req, res) => {
   try {
     const deleteId = await AddUser.findByIdAndDelete(req.params.id);
     if (!req.params.id) {
