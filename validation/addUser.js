@@ -13,7 +13,7 @@ const addUserValidation = [
   body("state", "State is required").isLength({ min: 1 }),
   body("city", "City is required").isLength({ min: 1 }),
   body("postalCode", "Postal Code is required").isLength({ min: 6 }),
-  body("address", "Address is required").isLength({ min: 4 }),
+  body("address", "Address is required").isLength({ min: 5 }),
 ];
 
 module.exports = addUserValidation;
