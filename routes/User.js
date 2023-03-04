@@ -159,6 +159,27 @@ router.get("/fetchAddUser", fetchUser, async (req, res) => {
   }
 });
 
+//FETCH ADD USER BY ID
+router.get("/fetch/AddUser/:id", async (req, res) => {
+  try {
+    const AddedUser = await AddUser.findById(req.params.id);
+    if (!AddedUser) {
+      return res
+        .status(400)
+        .send({ success: false, message: "added user Not found" });
+    } else {
+      res.status(200).send({
+        success: true,
+        message: "added user fetched successfully",
+        AddedUser,
+      });
+    }
+  } catch (error) {
+    console.log("error==>", error);
+    res.status(400).send({ success: false, message: "user not found" });
+  }
+});
+
 // SUBSCRIPTION API -5
 router.post("/subscription", SubscriptionValidation, async (req, res) => {
   const errors = validationResult(req);
